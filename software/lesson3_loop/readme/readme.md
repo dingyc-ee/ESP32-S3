@@ -22,7 +22,7 @@ void app_main(void)
 ###2 编译运行
 实际运行的循环周期为10秒
 ![实际延时了10秒](picture/esp32-loop-delay-10s.png)
-原因：vTaskDelay单位是Tick，难道ESP32的Tick != 1ms ?
+原因：vTaskDelay单位是Tick，难道ESP32的Tick != 10ms ?
 
 ###方法1：menuconfig配置Tick
 打开menuconfig，输入tick，发现ESP32的Tick为100Hz，每次Tick周期10ms，那么vTaskDelay中的1000次Tick就是10秒
