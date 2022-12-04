@@ -1,4 +1,4 @@
-#ESP32-VSCODE环境搭建  
+#ESP32-VSCODE环境搭建
 ##环境安装
 1. 在Windows中安装ESP-IDF
 2. 在vscode中安装Espressif IDF插件
