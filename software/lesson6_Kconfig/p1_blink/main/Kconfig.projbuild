@@ -1,0 +1,27 @@
+menu "WS2812"
+
+	config LED_GPIO_NUM
+		int "gpio pin"
+		prompt "set esp32s3 board ws2812 GPIO"
+		range 0 48
+		default 48
+		help
+			This is help message
+	
+	config LED_RMT_CHANNEL
+		int "channel"
+		prompt "set esp32s3 ws2812 pwm channel"
+		range 0 3
+		default 0
+		help
+			This is help message
+	
+	config DELAY_TIME_MS
+		int "period(ms)"
+		prompt "set esp32s3 ws2812 blink period"
+		range 0 2000
+		default 1000
+		help
+			This is help message
+
+endmenu
