@@ -1,7 +1,7 @@
 # WIFI扫描  
-[乐鑫官网WIFI文档链接](https://docs.espressif.com/projects/esp-idf/zh_CN/v4.4.3/esp32s3/api-guides/wifi.html)  
+[乐鑫官网WIFI文档链接](https://docs.espressif.com/projects/esp-idf/zh_CN/v4.4.3/esp32s3/api-guides/wifi.html)   
 ## 1. ESP32 STA模式启动流程  
-![STA模式启动流程](picture/start.jpg)
+![STA模式启动流程](picture/start.jpg)   
 ### 1. 任务说明  
 1. MainTask: esp-idf框架的入口，app_main函数  
 2. AppTask:  上层应用程序，主要用来跑WIFI业务。这个任务不是必需的，也可以只在MainTask中完成  
@@ -9,8 +9,8 @@
 4. LwIPTask: LwIP协议栈，主要用来做socket通信  
 5. WiFiTask: 乐鑫自己做的WiFi库，用于实现WiFi功能  
 #### 2. 初始化阶段  
-![初始化阶段流程图](picture/init_phase_1.jpg)
-![初始化阶段步骤图](picture/init_phase_2.jpg)
+![初始化阶段流程图](picture/init_phase_1.jpg)   
+![初始化阶段步骤图](picture/init_phase_2.jpg)   
 ```c
 ESP_LOGI(TAG, "1. WiFi初始化阶段");
 esp_netif_init();
@@ -21,26 +21,26 @@ esp_wifi_init(&wifi_config);
 ```
 #### 2. 配置阶段   
 **注意: 由于WIFI配置信息是保存在NVS中，所以在初始化WIFI之前就要初始化NVS存储**  
-![配置阶段流程图](picture/cfg_phase_1.jpg)
-![配置阶段步骤图](picture/cfg_phase_2.jpg)
+![配置阶段流程图](picture/cfg_phase_1.jpg)   
+![配置阶段步骤图](picture/cfg_phase_2.jpg)   
 ```c
 ESP_LOGI(TAG, "2. WiFi配置阶段");
 esp_wifi_set_mode(WIFI_MODE_STA);
 ```
 #### 3. 启动阶段  
-![启动阶段流程图](picture/start_phase_1.jpg)
-![启动阶段流程图](picture/start_phase_2.jpg)
+![启动阶段流程图](picture/start_phase_1.jpg)   
+![启动阶段流程图](picture/start_phase_2.jpg)   
 ```c
 ESP_LOGI(TAG, "3. WiFi启动阶段");
 esp_wifi_start();
 ```
 #### 4. WIFI扫描  
 **扫描类型**  
-![扫描类型](picture/scan_1.jpg)  
+![扫描类型](picture/scan_1.jpg)    
 **扫描流程图**  
-![ESP32扫描流程](picture/scan_2.jpg)
+![ESP32扫描流程](picture/scan_2.jpg)    
 **扫描接口**  
-![ESP32扫描流程](picture/scan_3.jpg)
+![ESP32扫描流程](picture/scan_3.jpg)    
 ```c
 ESP_LOGI(TAG, "4. WiFi扫描阶段");
 wifi_country_t ccode_config = {
@@ -54,7 +54,7 @@ esp_wifi_set_country(&ccode_config);
 esp_wifi_scan_start(NULL, true);
 ```
 **获取扫描结果**  
-![获取扫描结果](picture/scan_4.jpg)
+![获取扫描结果](picture/scan_4.jpg)   
 ```c
 uint16_t ap_count = 0;
 esp_wifi_scan_get_ap_num(&ap_count);
@@ -128,4 +128,4 @@ void app_main(void)
 }
 ```
 ## 3. 测试结果  
-![扫描结果](picture/scan_result.jpg)
+![扫描结果](picture/scan_result.jpg)   
