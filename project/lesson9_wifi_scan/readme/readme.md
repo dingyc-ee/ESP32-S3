@@ -20,7 +20,7 @@ wifi_init_config_t wifi_config = WIFI_INIT_CONFIG_DEFAULT();
 esp_wifi_init(&wifi_config);
 ```
 #### 2. 配置阶段   
-**注意: 由于WIFI配置信息是保存在NVS中，所以在初始化WIFI之前就要初始化NVS存储**
+**注意: 由于WIFI配置信息是保存在NVS中，所以在初始化WIFI之前就要初始化NVS存储**  
 ![配置阶段流程图](picture/cfg_phase_1.jpg)
 ![配置阶段步骤图](picture/cfg_phase_2.jpg)
 ```c
@@ -33,13 +33,13 @@ esp_wifi_set_mode(WIFI_MODE_STA);
 ```c
 ESP_LOGI(TAG, "3. WiFi启动阶段");
 esp_wifi_start();
-```   
+```
 #### 4. WIFI扫描  
-**扫描类型**
+**扫描类型**  
 ![扫描类型](picture/scan_1.jpg)  
-**扫描流程图**
+**扫描流程图**  
 ![ESP32扫描流程](picture/scan_2.jpg)
-**扫描接口**
+**扫描接口**  
 ![ESP32扫描流程](picture/scan_3.jpg)
 ```c
 ESP_LOGI(TAG, "4. WiFi扫描阶段");
@@ -52,8 +52,8 @@ wifi_country_t ccode_config = {
 printf("WiFi scan start...\n");
 esp_wifi_set_country(&ccode_config);
 esp_wifi_scan_start(NULL, true);
-```   
-**获取扫描结果**
+```
+**获取扫描结果**  
 ![获取扫描结果](picture/scan_4.jpg)
 ```c
 uint16_t ap_count = 0;
@@ -68,8 +68,8 @@ for (int i = 0; i < number; i++) {
         ap_records[i].bssid[0], ap_records[i].bssid[1], ap_records[i].bssid[2], ap_records[i].bssid[3], ap_records[i].bssid[4], ap_records[i].bssid[5]);
 }
 printf("WiFi scan done!\n");
-```   
-## 2. 完整代码
+```
+## 2. 完整代码  
 ```c
 #include <stdio.h>
 #include <string.h>
