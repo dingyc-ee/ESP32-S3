@@ -1,17 +1,15 @@
-#ESP32 日志
-
-
-###UART配置
+# ESP32 日志  
+### UART配置  
 1. 新建工程
     查看->命令面板，输入esp-idf:new project，一路完成工程创建
 2. 选择menuconfig，输入UART
-    ![选择menuconfig](picture/esp32-menuconfig.png)
+    ![选择menuconfig](picture/esp32-menuconfig.png)  
 3. 输入UART
-    ![配置UART串口参数](picture/esp32-menuconfig-uart.png)
+    ![配置UART串口参数](picture/esp32-menuconfig-uart.png)  
 4. 自定义波特率改为：460800
-    ![设置monitor波特率，和硬件波特率](picture/esp32-menuconfig-uart-460800.png)
+    ![设置monitor波特率，和硬件波特率](picture/esp32-menuconfig-uart-460800.png)  
 
-###日志打印
+### 日志打印  
 1. ESP32的日志打印函数
     ESP_LOGx分成5个等级：error warning info debug verbose，使用前先定义字符串TAG
 2. 测试代码
@@ -32,18 +30,18 @@
     ```
 3. 实际打印效果
     Monitor
-    ![实际效果展示](picture/esp32-menuconfig-uart-460800-print2.png)
+    ![实际效果展示](picture/esp32-menuconfig-uart-460800-print2.png)  
     SecureCRT
-    ![实际效果展示](picture/esp32-menuconfig-uart-460800-print.png)
+    ![实际效果展示](picture/esp32-menuconfig-uart-460800-print.png)  
 
 
-###动态调整日志等级
+### 动态调整日志等级  
 如果希望在使用时能够动态调整日志等级，需要先在menuconfig中配置最大的日志等级
 1. 配置APP最大日志等级
     选择menuconfig，输入LOG
-    ![配置日志](picture/esp32-menuconfig-log.png)
+    ![配置日志](picture/esp32-menuconfig-log.png)  
     设置最大日志等级为Verbose(详细)
-    ![设置日志等级](picture/esp32-menuconfig-log-level.png)
+    ![设置日志等级](picture/esp32-menuconfig-log-level.png)  
 2. 修改代码：在APP启动时日志等级改为最高Verbose
     使用esp_log_level_set接口
     ```c
