@@ -33,7 +33,7 @@ esp_wifi_set_mode(WIFI_MODE_STA);
 ```c
 ESP_LOGI(TAG, "3. WiFi启动阶段");
 esp_wifi_start();
-```
+```   
 #### 4. WIFI扫描  
 **扫描类型**
 ![扫描类型](picture/scan_1.jpg)  
@@ -52,7 +52,7 @@ wifi_country_t ccode_config = {
 printf("WiFi scan start...\n");
 esp_wifi_set_country(&ccode_config);
 esp_wifi_scan_start(NULL, true);
-```
+```   
 **获取扫描结果**
 ![获取扫描结果](picture/scan_4.jpg)
 ```c
@@ -68,7 +68,7 @@ for (int i = 0; i < number; i++) {
         ap_records[i].bssid[0], ap_records[i].bssid[1], ap_records[i].bssid[2], ap_records[i].bssid[3], ap_records[i].bssid[4], ap_records[i].bssid[5]);
 }
 printf("WiFi scan done!\n");
-```
+```   
 ## 2. 完整代码
 ```c
 #include <stdio.h>
