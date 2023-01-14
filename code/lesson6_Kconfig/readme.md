@@ -1,7 +1,7 @@
 # ESP32-Kconfig配置
 #### 1. 新建Kconfig.projbuild文件
 ![新建Kconfig.projbuild文件](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section6_esp32-kconfig-new.png)
-####2. 写入配置项
+#### 2. 写入配置项
 1. 新建menu
 ```
 menu "点灯配置"

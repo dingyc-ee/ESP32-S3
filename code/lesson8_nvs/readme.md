@@ -1,11 +1,11 @@
 ### NVS Blob块存储
 #### 1. 演示app_main任务栈溢出
-![任务战溢出](picture/main_task_overflow.jpg)
+![任务栈溢出](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section8_main_task_overflow.jpg)
 #### 2. 设置app_main任务栈大小
 打开menuconfig，输入main，如下图所示
-![默认栈大小](picture/main_task_stack.jpg)
+![默认栈大小](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section8_main_task_stack.jpg)
 默认栈大小为3584字节，这里改为35840字节，重新编译
-![默认栈大小](picture/main_task_stack_x10.jpg)
+![修改默认栈大小](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section8_main_task_stack_x10.jpg)
 #### 3. Blob存储结果
 ```c
 #include <stdio.h>
@@ -47,36 +47,35 @@ void app_main(void)
     nvs_close(handle);
 }
 ```
-![执行结果](picture/nvs_blob_result.jpg)
+![执行结果](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section8_nvs_blob_result.jpg)
 ### 4. 启动流程
 启动流程：
-1. 概述
-![总体启动流程](picture/boot_start1.jpg)
-2. bootloader启动
-![bootloader启动](picture/boot_start2.jpg)
-3. APP启动
-![APPA应用程序启动](picture/boot_start3.jpg)
-
+1. 概述  
+![总体启动流程](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section8_boot_start1.jpg)
+2. bootloader启动  
+![bootloader启动](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section8_boot_start2.jpg)
+3. APP启动  
+![APPA应用程序启动](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section8_boot_start3.jpg)  
 ### 4. PartitionTable分区表
 默认的PartitionTable分区表 **（注意！！！ESP32和ESP32S3的Flash布局不同）**
-![默认的Flash分区表](picture/default_flash.jpg)
-分区表描述
-![分区表](picture/partition_table_1.jpg)
-如何自定义分区表？
+![默认的Flash分区表](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section8_default_flash.jpg)  
+分区表描述  
+![分区表](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section8_partition_table_1.jpg)  
+如何自定义分区表?  
 1. 复制原始分区表到工程路径下
-![分区表](picture/partition_table_2.jpg)
-2. 默认分区表内容
-![默认分区表内容](picture/partition_table_3.jpg)
-3. 新增一个NVS分区
-![新增分区表内容](picture/partition_table_4.jpg)
-4. 重命名分区表文件
-![重命名分区表文件](picture/partition_table_5.jpg)
-5. menuconfig中输入partition，配置分区表
-![重命名分区表文件](picture/partition_table_6.jpg)
-6. 编译工程，可以看到编译报错，原因是Flash不够
-![编译报错](picture/partition_table_7.jpg)
-7. 打开menuconfig，输入flash，设置flash大小为8M
-![重新设置flash大小为8M](picture/partition_table_8.jpg)
+![分区表](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section8_partition_table_2.jpg)
+2. 默认分区表内容  
+![默认分区表内容](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section8_partition_table_3.jpg)  
+3. 新增一个NVS分区  
+![新增分区表内容](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section8_partition_table_4.jpg)  
+4. 重命名分区表文件  
+![重命名分区表文件](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section8_partition_table_5.jpg)  
+5. menuconfig中输入partition，配置分区表  
+![重命名分区表文件](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section8_partition_table_6.jpg)  
+6. 编译工程，可以看到编译报错，原因是Flash不够  
+![编译报错](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section8_partition_table_7.jpg)  
+7. 打开menuconfig，输入flash，设置flash大小为8M  
+![重新设置flash大小为8M](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section8_partition_table_8.jpg)  
 ### 5. 使用自定义的分区表
 ```c
 #include <stdio.h>
@@ -118,6 +117,6 @@ void app_main(void)
     nvs_close(handle);
 }
 ```
-原来`nvs_flash_init`改为`nvs_flash_init_partition`, `nvs_open`改为`nvs_open_from_partition`, 这样就从默认的NVS分区，切换到我们自定义的mynvs分区。
-**执行结果**
-![运行结果](picture/partition_table_9.jpg)
+原来`nvs_flash_init`改为`nvs_flash_init_partition`, `nvs_open`改为`nvs_open_from_partition`, 这样就从默认的NVS分区，切换到我们自定义的mynvs分区。   
+**执行结果**  
+![运行结果](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section8_partition_table_9.jpg)
