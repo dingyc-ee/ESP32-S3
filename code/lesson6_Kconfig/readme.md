@@ -1,6 +1,6 @@
-#ESP32-Kconfig配置
-####1. 新建Kconfig.projbuild文件
-![新建Kconfig.projbuild文件](picture/esp32-kconfig-new.png)
+# ESP32-Kconfig配置
+#### 1. 新建Kconfig.projbuild文件
+![新建Kconfig.projbuild文件](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section6_esp32-kconfig-new.png)
 ####2. 写入配置项
 1. 新建menu
 ```
@@ -10,9 +10,9 @@ endmenu
 ```
 运行 idf.py menuconfig，结果如下
 powershel
-![powershell](picture/esp32-kconfig-powershell.png)
+![powershell](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section6_esp32-kconfig-powershell.png)
 vscode
-![vscode](picture/esp32-kconfig-vscode.png)
+![vscode](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section6_esp32-kconfig-vscode.png)
 可以看到，power shell中文支持上有乱码，所以接下来选择英文
 2. 配置menu，新增3个配置项
 ```
@@ -45,21 +45,21 @@ menu "WS2812"
 endmenu
 ```
 运行 idf.py menuconfig，结果如下
-![powershell](picture/esp32-kconfig-powershell-result1.png)
+![powershell](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section6_esp32-kconfig-powershell-result1.png)
 进入配置项
-![powershell](picture/esp32-kconfig-powershell-result2.png)
+![powershell](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section6_esp32-kconfig-powershell-result2.png)
 按？查看help帮助信息
-![powershell](picture/esp32-kconfig-powershell-result3.png)
-![powershell](picture/esp32-kconfig-powershell-result4.png)
+![powershell](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section6_esp32-kconfig-powershell-result3.png)
+![powershell](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section6_esp32-kconfig-powershell-result4.png)
 修改闪烁周期值
-![powershell](picture/esp32-kconfig-powershell-result5.png)
+![powershell](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section6_esp32-kconfig-powershell-result5.png)
 按enter 修改完成
-![powershell](picture/esp32-kconfig-powershell-result6.png)
+![powershell](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section6_esp32-kconfig-powershell-result6.png)
 运行vscode，结果如下
-![vscode](picture/esp32-kconfig-vscode-result.png)
-###3. 编译
+![vscode](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section6_esp32-kconfig-vscode-result.png)
+### 3. 编译
 1. 查看sdkconfig文件，已经写入了3个宏定义
-![sdkconfig](picture/esp32-sdkconfig.png)
+![sdkconfig](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section6_esp32-sdkconfig.png)
 那么在C代码中就要替换这几个宏定义
 ```c
 /* Blink Example
@@ -127,4 +127,4 @@ void app_main(void)
 }
 ```
 运行结果：
-![运行结果](picture/esp32-sdkconfig-result1.png)
+![运行结果](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section6_esp32-sdkconfig-result1.png)
