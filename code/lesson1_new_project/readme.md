@@ -35,4 +35,4 @@
 2. 选择menuconfig，配置flash大小（我的板子是ESP32SC-N8R8，8M Flash）
 ![配置flash大小](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section1_esp32-menuconfig-flashsize.png)
 3. 编译输出，按Ctrl + ] 可以结束打印
-![配置flash结果](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/cetion1_esp32-menuconfig-flashsize2.png)
+![配置flash结果](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section1_esp32-menuconfig-flashsize2.png)
