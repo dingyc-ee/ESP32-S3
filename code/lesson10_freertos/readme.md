@@ -1,9 +1,9 @@
 # ESP32 FREERTOS
 ## 打印ESP32任务
 1. menuconfig中，打开FreeRTOS的trace打印功能
-![menuconfig中配置trace](picture/freertos_trace.jpg)
+![menuconfig中配置trace](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section10_freertos_trace.jpg)  
 2. menuconfig中，增加app_main主任务的栈大小
-![menuconfig中配置主任务堆栈](picture/freertos_main_task_stack.jpg)
+![menuconfig中配置主任务堆栈](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section10_freertos_main_task_stack.jpg)  
 3. 测试代码
 **ESP32最小工程**
 ```c
@@ -27,7 +27,7 @@ void app_main(void)
 ```
 4. 运行结果
 **ESP32最小工程的任务：**  
-![打印全部任务信息](picture/freertos_print_task.jpg)  
+![打印全部任务信息](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section10_freertos_print_task.jpg)  
 5. WIFI扫描工程  
 在WIFI扫描功能最后打印FreeRTOS任务
 ```c
@@ -101,16 +101,16 @@ void app_main(void)
 }
 ```  
 执行结果：  
-![扫描任务](picture/wifi_scan_task_print.jpg)  
+![扫描任务](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section10_wifi_scan_task_print.jpg)
 ### 文档和代码的对应关系  
 1. 任务对应
-![任务与文档对应关系](picture/wifi_scan_task_introduce.jpg)
+![任务与文档对应关系](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section10_wifi_scan_task_introduce.jpg)
 2. 时序对应
-![任务与文档对应的启动流程](picture/esp32_wifi_task.jpg)
+![任务与文档对应的启动流程](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section10_esp32_wifi_task.jpg)  
 ### ESP32 EventLoop
 [EventLoop官方文档链接](https://docs.espressif.com/projects/esp-idf/zh_CN/v4.4.3/esp32s3/api-reference/system/esp_event.html)  
 1. 常用的API  
-![EventLoop API](picture/event_loop_api.jpg)  
+![EventLoop API](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section10_event_loop_api.jpg)
 2. 官方文档中给出了参考示例  
 ```c
 // 1. Define the event handler
@@ -205,15 +205,15 @@ void app_main(void)
 }
 ```
 打印事件的base和id。可以看到<font color="red">图中红字部分</font>打印的base为字符串WIFI_EVENT，id分别为2和1。  
-![打印Event事件base和id](picture/event_base_id.jpg)  
+![打印Event事件base和id](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section10_event_base_id.jpg)   
 **<font color="red">这里的字符串WIFI_EVENT和ID=2 ID:1表示什么意思?</font>**  
-![WIFI启动过程](picture/event_2.jpg)  
+![WIFI启动过程](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section10_event_2.jpg)
 参考官方给出的启动过程，打印WiFi启动阶段后，打印了ID:2，猜测ID:2应该是WIFI_EVENT_STA_START；而在打印了WiFi scan start后，打印了ID:1，猜测ID:1应该是完成扫描。  
 <font color="red">我们的猜测对不对？要看官方文档</font>  
 3. 官方文档中的事件描述  
 [官网事件描述链接](https://docs.espressif.com/projects/esp-idf/zh_CN/v4.4.3/esp32s3/api-guides/wifi.html?highlight=wifi_event_sta_start#wifi-event-sta-start)  
 官网给出的WIFI事件  
-![WIFI事件](picture/event_enum.jpg)  
+![WIFI事件](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section10_event_enum.jpg)  
 对应的代码：`esp_wifi_types.h`
 ```c
 /** WiFi event declarations */
@@ -268,7 +268,7 @@ void run_on_event(void* handler_arg, esp_event_base_t base, int32_t id, void* ev
 }
 ```
 执行结果：  
-![打印事件](picture/event_print.jpg)  
+![打印事件](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section10_event_print.jpg)  
 4. 能不能在event_handler中，收到WIFI_EVENT_STA_START后执行WIFI扫描?  
 测试代码：
 ```c
@@ -316,9 +316,9 @@ void run_on_event(void* handler_arg, esp_event_base_t base, int32_t id, void* ev
 ```
 执行结果：可以看到，在收到WIFI_EVENT_STA_START执行wifi_scan，在sys_evt任务中产生了栈溢出。为什么?  
 看下之前打印的任务堆栈，sys_ent只剩下1170字节，所以我们不能在event中处理比较复杂的工作。  
-![event_task栈溢出](picture/event_task_overflow.jpg)  
+![event_task栈溢出](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section10_event_task_overflow.jpg)  
 sys_evt默认堆栈配置：
-![sys_event menuconfig](picture/sys_event_menuconfig.jpg)  
+![sys_event menuconfig](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section10_sys_event_menuconfig.jpg)  
 5. EVENT转任务  
 5.1  直接临时创建任务，执行完之后删除
 ```c
@@ -381,4 +381,4 @@ void run_on_event(void* handler_arg, esp_event_base_t base, int32_t id, void* ev
 }
 ```
 执行结果：  
-![WIFI扫描任务](picture/event_2_task.jpg)
+![WIFI扫描任务](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section10_event_2_task.jpg)
