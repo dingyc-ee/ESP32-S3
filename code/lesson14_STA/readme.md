@@ -100,5 +100,5 @@ void app_main(void)
     vTaskDelete(NULL);
 }
 ```
-执行结果：
+执行结果：  
 ![WIFI接入结果](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section14_wifi_connect_result.jpg)
