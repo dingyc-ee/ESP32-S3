@@ -21,7 +21,6 @@ static wifi_config_t sta_wifi_conf;
 static TaskHandle_t       app_task_hd    = NULL;
 static EventGroupHandle_t event_group_hd = NULL;
 
-static void btn_event_handler(int btn, int evt);
 static void event_handler(void* event_handler_arg, esp_event_base_t event_base, int32_t event_id, void* event_data);
 static void app_task(void *arg);
 
@@ -30,7 +29,6 @@ void app_main(void)
     printf("1. 外设初始化\n");
     led_init();
     btn_init();
-    btn_reg_evt_cb(btn_event_handler);
     led_set_color(0, 0, 20);
 
     printf("2. NVS初始化\n");
@@ -55,17 +53,6 @@ void app_main(void)
     led_set_color(20, 0, 0);
     esp_wifi_start();
     vTaskDelete(NULL);
-}
-
-static void btn_event_handler(int btn, int evt)
-{
-    if (FLEX_BTN_PRESS_LONG_START == evt) {
-        printf("长按手动进入配网模式...\n");
-        // 配网类型：ESPTouch and AirKiss
-        esp_smartconfig_set_type(SC_TYPE_ESPTOUCH_AIRKISS);
-        smartconfig_start_config_t smart_cfg = SMARTCONFIG_START_CONFIG_DEFAULT();
-        esp_smartconfig_start(&smart_cfg);
-    }
 }
 
 static void event_handler(void* event_handler_arg, esp_event_base_t event_base, int32_t event_id, void* event_data)
@@ -95,7 +82,7 @@ static void event_handler(void* event_handler_arg, esp_event_base_t event_base, 
     }
     else if ((IP_EVENT == event_base) && (IP_EVENT_STA_GOT_IP == event_id)) {
         ip_event_got_ip_t* event = (ip_event_got_ip_t*) event_data;
-        printf("DHCP成功 IP地址:" IPSTR, IP2STR(&event->ip_info.ip));
+        printf("DHCP成功 IP地址:" IPSTR "\n", IP2STR(&event->ip_info.ip));
         led_set_color(0, 20, 0);
         xEventGroupSetBits(event_group_hd, STA_CONNECTED);
     }
