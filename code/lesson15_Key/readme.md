@@ -1,11 +1,11 @@
 # 按键处理
 ### 参考
 [FlexibleButton官方源码](https://github.com/murphyzhao/FlexibleButton)
-### 按键扫描
-使用BOOT0(GPIO0)按键来作为输入按键，原理图如下：
-![BOOT0原理图](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section15_boot_sch.jpg)  
-新建ESP32工程，新增`component->gpio`组件，移植`FlexibleButton`源码。工程结构如下：
-![组件工程结构](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section15_component.jpg)
+### 按键扫描    
+使用BOOT0(GPIO0)按键来作为输入按键，原理图如下：    
+![BOOT0原理图](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section15_boot_sch.jpg)     
+新建ESP32工程，新增`component->gpio`组件，移植`FlexibleButton`源码。工程结构如下：    
+![组件工程结构](https://ding-aliyun.oss-cn-shenzhen.aliyuncs.com/esp32/section15_component.jpg)      
 ### 源码
 _bsp_gpio.c_
 ```c
